@@ -7,9 +7,13 @@ int main()
 	char szName[20];
 	char *pName = szName;
 
+	printf("1\n");
+	printf("%s", pName);
+	printf("2\n");
 	scanf("%s", pName);
 	printf(p);
-	printf("\n");
+	printf("%s", p);
+//	printf("\n");
 	printf("Name is %s\n", pName);
 
 	return 0;

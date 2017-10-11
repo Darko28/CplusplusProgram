@@ -12,6 +12,7 @@ int main()
 
 	for (int i = 0; i < 10; i++)
 		*(p+i) = i;
+	printf("%d\n", p[0]);
 	p++;
 	printf("%d\n", p[0]);
 	p = an + 6;
