@@ -124,13 +124,45 @@ int main()
 		}
 		printf("\n");
 
+		int sensor[20];
 		for (int i=0; i<20; i++) {
 				printf("%d ", sensorDataInDecimal(sensorNum[i].num1, sensorNum[i].num2));
+				sensor[i] = sensorDataInDecimal(sensorNum[i].num1, sensorNum[i].num2);
+		}
+
+		printf("\n");
+		printf("sensor data in array\n");
+		for (int i=0; i<20; i++) {
+				printf("%d ", sensor[i]);
+		}
+		printf("\n");
+
+		int sensorTmp[10];
+		printf("%lu\n", sizeof(sensor));
+		int sensorLen = sizeof(sensor) / sizeof(sensor[0]);
+		printf("%d\n", sensorLen);
+		printf("sensor data: \n");
+		for (int i=0; i<sensorLen/10; i++) {
+				for (int j=0; j<10; j++) {
+					sensorTmp[j] = sensor[j + i*10];
+				}
+				int sensorResult=0, sensorResult2 = 0;
+				sensorResult = sensorDataConvertion(sensorTmp[2], sensorTmp[3]);
+				sensorResult2 = sensorDataConvertion(sensorTmp[4], sensorTmp[5]);
+				printf("%d %d ", sensorResult, sensorResult2);
 		}
 		printf("\n");
 
 		for (int i=0; i<40; i=i+2) {
 				printf("%c%c ", sensorNum[i].num1, sensorNum[i].num2);
+		}
+		printf("\n");
+		
+
+		SensorNumber *pn;
+		pn = sensorNum;
+		for (int i=0; i<40; i++) {
+				printf("%c%c ", pn[i].num1, pn[i].num2);
 		}
 		printf("\n");
 
