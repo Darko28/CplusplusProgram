@@ -46,12 +46,32 @@ int sensorDataConvertToDecimal(char a) {
 		}
 };
 
+int sensorDataConvertToDecimal1(char a) {
+		if (a >= '0' && a <= '9') {
+				return a - '0';
+		} else if (a >= 'a' && a <= 'f') {
+				return (a - 'a' + 10);
+		}
+		return -1;
+}
+
+
+
+
+
 int sensorDataInDecimal(char a, char b) {
 		int an = sensorDataConvertToDecimal(a);
 		int bn = sensorDataConvertToDecimal(b);
 		return an * 16 + bn;
 };
 
+
+
+float sensorDataConvertion(int a, int b) {
+		float result;
+		result = ((b * 256) + a) / 10;
+		return result;
+};
 
 int main()
 {
@@ -79,6 +99,25 @@ int main()
 		}
 		printf("\n");
 
+
+		fseek(fpSrc, 0, SEEK_SET);
+		for(int i=0; i<20; i++) {
+			
+				sensorNum[i].num1 = fgetc(fpSrc);
+				sensorNum[i].num2 = fgetc(fpSrc);
+				if (sensorNum[i].num1 == ' ') {
+						sensorNum[i].num1 = sensorNum[i].num2;
+						sensorNum[i].num2 = fgetc(fpSrc);
+				}
+		}
+
+
+		for (int i=0; i<20; i++) {
+				printf("%c", sensorNum[i].num1);
+				printf("%c ", sensorNum[i].num2);
+		}
+		printf("\n");
+
 		for (int i=0; i<20; i++) {
 				printf("%x", sensorNum[i].num1);
 				printf("%x ", sensorNum[i].num2);
@@ -86,7 +125,12 @@ int main()
 		printf("\n");
 
 		for (int i=0; i<20; i++) {
-				printf("%d", sensorDataInDecimal(sensorNum[i].num1, sensorNum[i].num2));
+				printf("%d ", sensorDataInDecimal(sensorNum[i].num1, sensorNum[i].num2));
+		}
+		printf("\n");
+
+		for (int i=0; i<40; i=i+2) {
+				printf("%c%c ", sensorNum[i].num1, sensorNum[i].num2);
 		}
 		printf("\n");
 
